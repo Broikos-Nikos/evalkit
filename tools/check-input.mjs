@@ -42,7 +42,19 @@ for (const [p, name] of [
 
 const ev = JSON.parse(readFileSync(generated, 'utf8'))
 const bytes = readFileSync(frozen)
-const sha256 = createHash('sha256').update(bytes).digest('hex')
+/* The size a clone sees, not the size this checkout has. */
+const normalisedBytes = Buffer.byteLength(bytes.toString('utf8').replace(/\r\n/g, '\n'), 'utf8')
+/*
+ * The hash of the text, not of the bytes on this disk. Git stores text with LF
+ * and checks it out with CRLF wherever `core.autocrlf` is on, which is the
+ * default on Windows, so the same committed file has two sha256 values
+ * depending on who cloned it. This project's own input hashed one way here and
+ * another in a fresh clone, and the gate below would have failed on every
+ * machine except the one that wrote it, CI included. Normalising first makes
+ * the value a property of the document rather than of the checkout.
+ */
+const textSha = (buf) => createHash('sha256').update(buf.toString('utf8').replace(/\r\n/g, '\n'), 'utf8').digest('hex')
+const sha256 = textSha(bytes)
 
 if (!ev.source?.sha256) {
   fail('src/generated/evaluation.json records no sha256 for its input', 'Run npm run build:input')
@@ -51,11 +63,11 @@ if (!ev.source?.sha256) {
     'data/meta.json is not the file these figures were computed from',
     `recorded ${ev.source.sha256.slice(0, 16)}..., on disk ${sha256.slice(0, 16)}...` +
       String.fromCharCode(10) +
-      `      Recorded ${ev.source.bytes} bytes, on disk ${bytes.length}.`,
+      `      Recorded ${ev.source.bytes} bytes, on disk ${normalisedBytes}.`,
   )
 } else {
   console.log(
-    `  ok      data/meta.json is the ${(bytes.length / 1024).toFixed(0)} KB frozen on ${ev.built}, sha256 ${sha256.slice(0, 16)}...`,
+    `  ok      data/meta.json is the ${(normalisedBytes / 1024).toFixed(0)} KB frozen on ${ev.built}, sha256 ${sha256.slice(0, 16)}...`,
   )
 }
 

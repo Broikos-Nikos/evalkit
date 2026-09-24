@@ -37,7 +37,21 @@ mkdirSync(resolve(root, 'src/generated'), { recursive: true })
 
 copyFileSync(UPSTREAM, FROZEN)
 const bytes = readFileSync(FROZEN)
-const sha256 = createHash('sha256').update(bytes).digest('hex')
+/*
+ * The hash of the text, not of the bytes on this disk. Git stores text with LF
+ * and checks it out with CRLF wherever `core.autocrlf` is on, which is the
+ * default on Windows, so the same committed file has two sha256 values
+ * depending on who cloned it. This project's own input hashed one way here and
+ * another in a fresh clone, and the gate below would have failed on every
+ * machine except the one that wrote it, CI included. Normalising first makes
+ * the value a property of the document rather than of the checkout.
+ */
+const normalise = (buf) => buf.toString('utf8').replace(/\r\n/g, '\n')
+const textSha = (buf) => createHash('sha256').update(normalise(buf), 'utf8').digest('hex')
+/* The size too, for the same reason: it is a recorded number and a clone
+ * disagrees with it by the count of the line endings. */
+const textBytes = (buf) => Buffer.byteLength(normalise(buf), 'utf8')
+const sha256 = textSha(bytes)
 const meta = JSON.parse(bytes.toString('utf8'))
 const q = meta.quantisation
 const n = q.heldOutSentences
@@ -92,7 +106,7 @@ const out = {
     measuredAt: q.measuredAt,
     heldOutSentences: n,
     sha256,
-    bytes: bytes.length,
+    bytes: textBytes(bytes),
     pairedTestRecorded: bytes.toString('utf8').toLowerCase().includes('mcnemar'),
     discordantCountsRecorded: bytes.toString('utf8').toLowerCase().includes('discordant'),
     why: 'Frozen and hashed because this project quotes it by number. A quotation of a file that has changed is a claim about a document nobody else has.',

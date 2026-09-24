@@ -6,8 +6,8 @@
     "file": "data/meta.json",
     "measuredAt": "2026-09-21",
     "heldOutSentences": 10578,
-    "sha256": "56c4442d5b953c1418bc4990b9f087879b889615f4aab09c769a29b968f63138",
-    "bytes": 10651,
+    "sha256": "441c90da31b5c248dbf151be9843e8d033a2f3d705b684ecf5f9572b65999370",
+    "bytes": 10253,
     "pairedTestRecorded": false,
     "discordantCountsRecorded": false,
     "why": "Frozen and hashed because this project quotes it by number. A quotation of a file that has changed is a claim about a document nobody else has."
