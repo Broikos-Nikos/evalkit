@@ -1,0 +1,255 @@
+{
+  "built": "2026-09-24",
+  "source": {
+    "what": "watch-it-think's published quantisation comparison, from its own meta.json",
+    "upstream": "projects/watch-it-think/public/model/meta.json",
+    "file": "data/meta.json",
+    "measuredAt": "2026-09-21",
+    "heldOutSentences": 10578,
+    "sha256": "56c4442d5b953c1418bc4990b9f087879b889615f4aab09c769a29b968f63138",
+    "bytes": 10651,
+    "pairedTestRecorded": false,
+    "discordantCountsRecorded": false,
+    "why": "Frozen and hashed because this project quotes it by number. A quotation of a file that has changed is a claim about a document nobody else has."
+  },
+  "rows": [
+    {
+      "label": "intent accuracy",
+      "a": 74.58,
+      "b": 74.53,
+      "n": 10578,
+      "delta": -0.05,
+      "rows": 5.3,
+      "mde": 1.68,
+      "mdeRows": 177,
+      "ratio": 33.5,
+      "verdict": "refused",
+      "why": "5.3 rows, and this sample can only detect 177",
+      "sayable": "intent accuracy is 5.3 rows of 10,578. This sample detects 177 rows and above, so the difference is 33.5 times smaller than the smallest it could see. 11,904,074 rows would be needed to call it either way.",
+      "halfWidthPp": 0.83,
+      "nNeeded": 11904074,
+      "mcnemar": [
+        {
+          "discordant": 5,
+          "z": 2.24,
+          "significant": true
+        },
+        {
+          "discordant": 50,
+          "z": 0.71,
+          "significant": false
+        },
+        {
+          "discordant": 100,
+          "z": 0.5,
+          "significant": false
+        },
+        {
+          "discordant": 200,
+          "z": 0.35,
+          "significant": false
+        },
+        {
+          "discordant": 500,
+          "z": 0.22,
+          "significant": false
+        },
+        {
+          "discordant": 1000,
+          "z": 0.16,
+          "significant": false
+        }
+      ],
+      "paired": [
+        {
+          "discordantPercent": 0.5,
+          "nNeeded": 156976
+        },
+        {
+          "discordantPercent": 1,
+          "nNeeded": 313953
+        },
+        {
+          "discordantPercent": 2,
+          "nNeeded": 627909
+        },
+        {
+          "discordantPercent": 5,
+          "nNeeded": 1569774
+        },
+        {
+          "discordantPercent": 10,
+          "nNeeded": 3139550
+        }
+      ]
+    },
+    {
+      "label": "tag accuracy",
+      "a": 97.28,
+      "b": 97.28,
+      "n": 10578,
+      "delta": 0,
+      "rows": 0,
+      "mde": 0.63,
+      "mdeRows": 66,
+      "ratio": null,
+      "verdict": "indistinguishable",
+      "why": "identical to the precision reported, on 10,578 rows",
+      "sayable": "no difference was measured. This sample would have caught one of 66 rows or more.",
+      "halfWidthPp": 0.31,
+      "nNeeded": null,
+      "mcnemar": [],
+      "paired": []
+    },
+    {
+      "label": "exact match",
+      "a": 69.97,
+      "b": 69.86,
+      "n": 10578,
+      "delta": -0.11,
+      "rows": 11.6,
+      "mde": 1.77,
+      "mdeRows": 187,
+      "ratio": 16.1,
+      "verdict": "refused",
+      "why": "11.6 rows, and this sample can only detect 187",
+      "sayable": "exact match is 11.6 rows of 10,578. This sample detects 187 rows and above, so the difference is 16.1 times smaller than the smallest it could see. 2,725,961 rows would be needed to call it either way.",
+      "halfWidthPp": 0.87,
+      "nNeeded": 2725961,
+      "mcnemar": [
+        {
+          "discordant": 12,
+          "z": 3.46,
+          "significant": true
+        },
+        {
+          "discordant": 50,
+          "z": 1.7,
+          "significant": false
+        },
+        {
+          "discordant": 100,
+          "z": 1.2,
+          "significant": false
+        },
+        {
+          "discordant": 200,
+          "z": 0.85,
+          "significant": false
+        },
+        {
+          "discordant": 500,
+          "z": 0.54,
+          "significant": false
+        },
+        {
+          "discordant": 1000,
+          "z": 0.38,
+          "significant": false
+        }
+      ],
+      "paired": [
+        {
+          "discordantPercent": 0.5,
+          "nNeeded": 32432
+        },
+        {
+          "discordantPercent": 1,
+          "nNeeded": 64865
+        },
+        {
+          "discordantPercent": 2,
+          "nNeeded": 129732
+        },
+        {
+          "discordantPercent": 5,
+          "nNeeded": 324332
+        },
+        {
+          "discordantPercent": 10,
+          "nNeeded": 648666
+        }
+      ]
+    },
+    {
+      "label": "intent accuracy, allowed to decline",
+      "a": 72.48,
+      "b": 72.63,
+      "n": 10578,
+      "delta": 0.15,
+      "rows": 15.9,
+      "mde": 1.72,
+      "mdeRows": 182,
+      "ratio": 11.5,
+      "verdict": "refused",
+      "why": "15.9 rows, and this sample can only detect 182",
+      "sayable": "intent accuracy, allowed to decline is 15.9 rows of 10,578. This sample detects 182 rows and above, so the difference is 11.5 times smaller than the smallest it could see. 1,391,624 rows would be needed to call it either way.",
+      "halfWidthPp": 0.85,
+      "nNeeded": 1391624,
+      "mcnemar": [
+        {
+          "discordant": 16,
+          "z": 4,
+          "significant": true
+        },
+        {
+          "discordant": 50,
+          "z": 2.26,
+          "significant": true
+        },
+        {
+          "discordant": 100,
+          "z": 1.6,
+          "significant": false
+        },
+        {
+          "discordant": 200,
+          "z": 1.13,
+          "significant": false
+        },
+        {
+          "discordant": 500,
+          "z": 0.72,
+          "significant": false
+        },
+        {
+          "discordant": 1000,
+          "z": 0.51,
+          "significant": false
+        }
+      ],
+      "paired": [
+        {
+          "discordantPercent": 0.5,
+          "nNeeded": 17440
+        },
+        {
+          "discordantPercent": 1,
+          "nNeeded": 34882
+        },
+        {
+          "discordantPercent": 2,
+          "nNeeded": 69766
+        },
+        {
+          "discordantPercent": 5,
+          "nNeeded": 174418
+        },
+        {
+          "discordantPercent": 10,
+          "nNeeded": 348837
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "metrics": 4,
+    "refused": 3,
+    "different": 0,
+    "indistinguishable": 1,
+    "directionsDisagree": true,
+    "detectableRows": 177,
+    "askedAboutRows": 5.3,
+    "timesSmallerThanDetectable": 33.5
+  }
+}

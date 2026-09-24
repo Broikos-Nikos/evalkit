@@ -1,0 +1,398 @@
+{
+  "exporter": "torchscript",
+  "source": "bslm router, trained from random init, no pretrained weights",
+  "inputs": {
+    "bslm": {
+      "name": "bslm",
+      "remote": "https://github.com/Broikos-Nikos/bslm.git",
+      "commit": "50aafae",
+      "dirty": true
+    },
+    "checkpoint": {
+      "bytes": 20370911,
+      "sha256": "ff9d84451a7f72fa9c501a8d23d578b03c77e078c0d0c2e02dadc84120e453f0",
+      "path": "checkpoints/bslm.pt",
+      "obtainable": false,
+      "note": "not committed to that repository, so this file cannot be obtained from it. The hash identifies it; nothing here produces it."
+    },
+    "architecture": {
+      "bytes": 3841,
+      "sha256": "95b37168bcf0fb297e00bdd87f25d0f195dffd7a7aeb593e922cc59975ed7188",
+      "path": "bslm/model.py",
+      "obtainable": true
+    },
+    "vocabulary": {
+      "bytes": 161501,
+      "sha256": "b190df569d28d63f41e513e4f9a56d46939cbc81a64cc6fe2672cc6198e4bab1",
+      "path": "checkpoints/tokenizer.json",
+      "obtainable": true
+    }
+  },
+  "parameters": 5086061,
+  "config": {
+    "vocab_size": 4000,
+    "n_intents": 44,
+    "n_slot_tags": 65,
+    "d_model": 256,
+    "n_layers": 6,
+    "n_heads": 4,
+    "d_ff": 768,
+    "max_len": 64
+  },
+  "trainingOnly": {
+    "dropout": 0.1
+  },
+  "maxLen": 64,
+  "intents": [
+    "alarm.cancel",
+    "alarm.set",
+    "assistant.cancel",
+    "assistant.capabilities",
+    "assistant.repeat",
+    "calendar.create",
+    "calendar.query",
+    "call.make",
+    "device.control",
+    "light.control",
+    "list.add",
+    "list.read",
+    "math.calculate",
+    "message.send",
+    "music.control",
+    "music.play",
+    "navigation.route",
+    "news.query",
+    "note.create",
+    "note.read",
+    "oos",
+    "reminder.create",
+    "reminder.list",
+    "rule.set",
+    "search.web",
+    "smalltalk.bye",
+    "smalltalk.greet",
+    "smalltalk.thanks",
+    "time.query",
+    "timer.cancel",
+    "timer.query",
+    "timer.set",
+    "translate",
+    "unit.convert",
+    "volume.set",
+    "weather.query",
+    "work.business",
+    "work.code",
+    "work.files",
+    "work.ops",
+    "work.research",
+    "work.review",
+    "work.status",
+    "work.write"
+  ],
+  "slotTags": [
+    "O",
+    "B-amount",
+    "I-amount",
+    "B-artist",
+    "I-artist",
+    "B-brightness",
+    "I-brightness",
+    "B-color",
+    "I-color",
+    "B-content",
+    "I-content",
+    "B-date",
+    "I-date",
+    "B-device",
+    "I-device",
+    "B-duration",
+    "I-duration",
+    "B-expression",
+    "I-expression",
+    "B-fact",
+    "I-fact",
+    "B-genre",
+    "I-genre",
+    "B-item",
+    "I-item",
+    "B-language",
+    "I-language",
+    "B-level",
+    "I-level",
+    "B-list_name",
+    "I-list_name",
+    "B-location",
+    "I-location",
+    "B-note",
+    "I-note",
+    "B-person",
+    "I-person",
+    "B-phrase",
+    "I-phrase",
+    "B-playlist",
+    "I-playlist",
+    "B-project",
+    "I-project",
+    "B-query",
+    "I-query",
+    "B-room",
+    "I-room",
+    "B-rule",
+    "I-rule",
+    "B-song",
+    "I-song",
+    "B-target",
+    "I-target",
+    "B-task",
+    "I-task",
+    "B-time",
+    "I-time",
+    "B-title",
+    "I-title",
+    "B-topic",
+    "I-topic",
+    "B-unit_from",
+    "I-unit_from",
+    "B-unit_to",
+    "I-unit_to"
+  ],
+  "slots": [
+    "amount",
+    "artist",
+    "brightness",
+    "color",
+    "content",
+    "date",
+    "device",
+    "duration",
+    "expression",
+    "fact",
+    "genre",
+    "item",
+    "language",
+    "level",
+    "list_name",
+    "location",
+    "note",
+    "person",
+    "phrase",
+    "playlist",
+    "project",
+    "query",
+    "room",
+    "rule",
+    "song",
+    "target",
+    "task",
+    "time",
+    "title",
+    "topic",
+    "unit_from",
+    "unit_to"
+  ],
+  "onnxBytes": 20420994,
+  "parity": {
+    "copyAgainstOriginal": {
+      "value": 0.0,
+      "tolerance": 0.0001,
+      "sentences": 22,
+      "note": "the re-declared architecture against bslm/model.py"
+    },
+    "graphAgainstOriginal": {
+      "value": 9.059906005859375e-06,
+      "tolerance": 0.0001,
+      "sentences": 22,
+      "note": "the exported graph against the module it came from"
+    },
+    "attentionRowSumDeviation": {
+      "value": 3.5762786865234375e-07,
+      "tolerance": 1e-05,
+      "sentences": 22,
+      "note": "a sanity check on the softmax, not on the fields. Any attention cube passes this, including a wrong one: a cube with its layers reversed passes at 0."
+    },
+    "attentionAgainstNumpyWitness": {
+      "value": 1.0059445660903776e-06,
+      "tolerance": 0.0001,
+      "sentences": 4,
+      "languages": [
+        "el",
+        "en"
+      ],
+      "sentenceTokens": [
+        4,
+        4,
+        63,
+        62
+      ],
+      "fields": 96,
+      "values": 188280,
+      "valueMean": 0.016953473548765568,
+      "note": "every layer and head recomputed from the raw weights in numpy. The tolerance is the one that means something: reversing the layers or rolling the head axis fails it at about 9.8e-01."
+    }
+  },
+  "quantisation": {
+    "measuredAt": "2026-09-21",
+    "measuredOn": {
+      "runtime": "onnxruntime 1.30.0 CPUExecutionProvider",
+      "threads": 1,
+      "cpu": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+      "python": "3.12.10",
+      "os": "Windows 11",
+      "notThePage": "The page runs onnxruntime-web in wasm at one thread, which is several times slower than this. These numbers describe the graph, not the visitor's experience: the page measures its own latency live and that is the figure a reader should believe about the page."
+    },
+    "testSet": {
+      "bytes": 2526137,
+      "sha256": "e3828414e3dc3d4f94dd75dbdf45d2721c649bb84282fe0e51c77d98efc0f682",
+      "path": "data/test.jsonl",
+      "obtainable": false,
+      "note": "not committed to that repository, so this file cannot be obtained from it. The hash identifies it; nothing here produces it.",
+      "split": "adversarial"
+    },
+    "bslm": {
+      "name": "bslm",
+      "remote": "https://github.com/Broikos-Nikos/bslm.git",
+      "commit": "50aafae",
+      "dirty": true
+    },
+    "rowsRead": 10578,
+    "rowsEvaluated": 10578,
+    "heldOutSentences": 10578,
+    "budgetPoints": 1.0,
+    "fp32": {
+      "n": 10578,
+      "intentAccuracy": 74.58,
+      "tagAccuracy": 97.28,
+      "exactMatch": 69.97,
+      "withAbstain": {
+        "threshold": 0.5,
+        "intentAccuracy": 72.48,
+        "abstained": 774,
+        "rows": 10578,
+        "note": "the same weights scored the way bslm.infer.Parser scores them: below this confidence it answers oos rather than guessing, so a declined row counts only when the gold label is itself oos."
+      },
+      "latency": {
+        "medianMs": 1.661,
+        "p05Ms": 1.164,
+        "p95Ms": 2.353,
+        "firstRunMs": 2.26,
+        "runs": 10578,
+        "note": "session.run only, one timing per sentence, over the evaluated rows. Tokenization is not included: it is about 0.005 ms and it is not what this measures."
+      },
+      "rowsRead": 10578,
+      "rowsEvaluated": 10578,
+      "skippedEmptyWords": 0,
+      "skippedUnseenIntent": 0,
+      "byLength": [
+        {
+          "tokens": 6,
+          "medianMs": 1.403,
+          "p95Ms": 1.836,
+          "reps": 200
+        },
+        {
+          "tokens": 14,
+          "medianMs": 2.148,
+          "p95Ms": 2.697,
+          "reps": 200
+        },
+        {
+          "tokens": 32,
+          "medianMs": 3.555,
+          "p95Ms": 4.034,
+          "reps": 200
+        },
+        {
+          "tokens": 64,
+          "medianMs": 6.184,
+          "p95Ms": 7.147,
+          "reps": 200
+        }
+      ]
+    },
+    "int8": {
+      "n": 10578,
+      "intentAccuracy": 74.53,
+      "tagAccuracy": 97.28,
+      "exactMatch": 69.86,
+      "withAbstain": {
+        "threshold": 0.5,
+        "intentAccuracy": 72.63,
+        "abstained": 834,
+        "rows": 10578,
+        "note": "the same weights scored the way bslm.infer.Parser scores them: below this confidence it answers oos rather than guessing, so a declined row counts only when the gold label is itself oos."
+      },
+      "latency": {
+        "medianMs": 0.798,
+        "p05Ms": 0.512,
+        "p95Ms": 1.226,
+        "firstRunMs": 1.111,
+        "runs": 10578,
+        "note": "session.run only, one timing per sentence, over the evaluated rows. Tokenization is not included: it is about 0.005 ms and it is not what this measures."
+      },
+      "rowsRead": 10578,
+      "rowsEvaluated": 10578,
+      "skippedEmptyWords": 0,
+      "skippedUnseenIntent": 0,
+      "byLength": [
+        {
+          "tokens": 6,
+          "medianMs": 0.576,
+          "p95Ms": 0.995,
+          "reps": 200
+        },
+        {
+          "tokens": 14,
+          "medianMs": 0.968,
+          "p95Ms": 1.256,
+          "reps": 200
+        },
+        {
+          "tokens": 32,
+          "medianMs": 1.919,
+          "p95Ms": 2.865,
+          "reps": 200
+        },
+        {
+          "tokens": 64,
+          "medianMs": 3.697,
+          "p95Ms": 4.062,
+          "reps": 200
+        }
+      ]
+    },
+    "intentAccuracyDelta": -0.05,
+    "bytesFp32": 20420994,
+    "bytesInt8": 5284077,
+    "shrink": 3.86,
+    "ships": "int8",
+    "crossCheck": {
+      "reference": "bslm.infer.Parser",
+      "graph": "router.onnx",
+      "seed": 20260921,
+      "rows": 800,
+      "testSet": {
+        "bytes": 2526137,
+        "sha256": "e3828414e3dc3d4f94dd75dbdf45d2721c649bb84282fe0e51c77d98efc0f682",
+        "path": "data/test.jsonl",
+        "obtainable": false,
+        "note": "not committed to that repository, so this file cannot be obtained from it. The hash identifies it; nothing here produces it."
+      },
+      "bslm": {
+        "name": "bslm",
+        "remote": "https://github.com/Broikos-Nikos/bslm.git",
+        "commit": "50aafae",
+        "dirty": true
+      },
+      "onnxArgmaxAccuracy": 76.12,
+      "referenceArgmaxAccuracy": 76.12,
+      "argmaxDisagreements": 0,
+      "withAbstain": {
+        "threshold": 0.5,
+        "intentAccuracy": 73.75,
+        "abstained": 57,
+        "rows": 800,
+        "note": "the deployed assistant declines below this confidence rather than guessing. The page quotes the argmax figure because the page draws what the model predicts, and this is what the same weights score when they are allowed to say nothing."
+      }
+    }
+  }
+}
