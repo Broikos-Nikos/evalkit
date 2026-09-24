@@ -1,0 +1,184 @@
+/*
+ * The house palette, the same tokens as the other four projects, read from
+ * broikos.gr's own stylesheet rather than matched by eye. The neutrals are warm:
+ * #080604 carries more red than blue.
+ *
+ * The accent is spent on one thing per screen. Here that thing is the threshold,
+ * because the threshold is the entire argument: everything below it is a
+ * question the data cannot be asked.
+ */
+:root {
+  --ink: #080604;
+  --lift: #141010;
+  --edge: #2e2621;
+  --text: #ffffff;
+  --dim: #9a8f88;
+  --faint: #8a7f76;
+
+  --flame: #ff6a00;
+  --flame-bright: #ff8a1f;
+  --focus: #ff8a1f;
+
+  --sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'Cascadia Mono', 'Roboto Mono', monospace;
+  --gutter: clamp(1rem, 4vw, 3rem);
+
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box }
+
+body {
+  margin: 0;
+  padding: 0 var(--gutter) 5rem;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+}
+
+header { max-width: 60rem; padding: 4rem 0 2rem }
+
+.wordmark {
+  margin: 0 0 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  color: var(--faint);
+}
+
+h1 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.9rem, 5.2vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+.standfirst { margin: 0; max-width: 54ch; color: var(--dim); font-size: 1.02rem }
+
+main { max-width: 62rem }
+
+/* The instrument. */
+.rig {
+  margin: 0 0 2rem;
+  padding: 1.5rem;
+  background: var(--lift);
+  border: 1px solid var(--edge);
+  border-radius: 4px;
+}
+
+/*
+ * The bar and the line it has to cross.
+ *
+ * `--at` is where the reader has dragged to and `--threshold` is where the
+ * verdict turns over, both as a fraction of the track. The line does not move:
+ * it is a property of the sample size, not of the question, and a reader who
+ * drags the bar past it has watched the only thing on this page that matters.
+ */
+.rig__scale {
+  position: relative;
+  height: 3rem;
+  margin: 0 0 1.5rem;
+  background: #1b1512;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.rig__scale::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--at, 0) * 100%);
+  background: #6a4a35;
+  transition: width 90ms linear, background 90ms linear;
+}
+
+.rig__scale[data-verdict='different']::before { background: var(--flame) }
+
+.rig__scale::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--threshold, 1) * 100%);
+  width: 2px;
+  background: var(--flame-bright);
+}
+
+.control { display: grid; gap: 0.4rem; margin: 0 0 1.25rem }
+
+.control__label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+input[type='range'] { width: 100%; accent-color: var(--flame) }
+input[type='range']:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px }
+
+.control__value { font-family: var(--mono); font-size: 1.1rem; color: var(--text) }
+
+.verdict {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dim);
+}
+
+.verdict[data-verdict='refused'] { color: var(--flame) }
+.verdict[data-verdict='different'] { color: var(--text) }
+
+.sayable { margin: 0; max-width: 68ch; color: var(--dim); font-size: 0.92rem }
+
+/* The four real comparisons. */
+.table { margin: 0 0 2rem }
+
+.table__head { margin: 0 0 0.75rem; color: var(--faint); font-size: 0.86rem }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--edge);
+  border-radius: 3px;
+  margin-bottom: 0.4rem;
+}
+
+.row__name { font-size: 0.9rem }
+.row__figure,
+.row__rows { font-family: var(--mono); font-size: 0.78rem; color: var(--faint) }
+
+.row__verdict {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+}
+
+.row[data-verdict='refused'] .row__verdict { color: var(--flame) }
+
+.caption { margin: 0 0 2rem; max-width: 76ch; color: var(--faint); font-size: 0.86rem }
+
+footer {
+  max-width: 76ch;
+  padding-top: 2rem;
+  border-top: 1px solid var(--edge);
+  color: var(--faint);
+  font-size: 0.8rem;
+}
+
+/* At phone width the four column row has nowhere to go, so it stacks. */
+@media (max-width: 40rem) {
+  .row { grid-template-columns: 1fr auto; row-gap: 0.25rem }
+  .row__name { grid-column: 1 / -1 }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rig__scale::before { transition: none }
+}

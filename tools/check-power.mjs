@@ -14,7 +14,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { halfWidth, minimumDetectable, nNeeded, nNeededPaired, mcnemarRange, judge } from './power-lib.mjs'
+import { halfWidth, minimumDetectable, nNeeded, nNeededPaired, mcnemarRange, judge } from '../src/lib/power.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const ev = JSON.parse(readFileSync(resolve(root, 'src/generated/evaluation.json'), 'utf8'))

@@ -1,11 +1,15 @@
 /**
  * The arithmetic, in one place, and the refusal built on top of it.
  *
- * `build-input.mjs` runs this over the committed evaluation and freezes the
- * result. `check-power.mjs` runs the same functions again and requires the
- * committed JSON to match. `check-refusal.mjs` tests the behaviour rather than
- * the numbers. Two implementations of the same arithmetic agree about a mistake
- * sooner or later, which this workspace has now written down five times.
+ * It lives under `src/` rather than in `tools/` because the page imports it too,
+ * and the page is the only surface a reader ever sees. A second copy of this
+ * arithmetic for the browser would be two implementations that agree about a
+ * mistake sooner or later, which this workspace has now written down five times.
+ *
+ * `build-input.mjs` runs it over the committed evaluation and freezes the
+ * result; `check-power.mjs` runs it again and requires the committed JSON to
+ * match; `check-refusal.mjs` tests the behaviour rather than the numbers; and
+ * the page calls `judge()` live on whatever the reader drags it to.
  *
  * ## The question everybody asks, and the one that decides
  *
@@ -146,7 +150,20 @@ export function judge(aPercent, bPercent, n, { label = 'the difference' } = {}) 
    */
   const exactMde = minimumDetectable(aPercent, n)
   const mde = Number(exactMde.toFixed(2))
-  const mdeRows = Math.round((exactMde / 100) * n)
+  /*
+   * Ceil, not round, and the difference is the whole point of the function.
+   *
+   * `mdeRows` is stated to a reader as "the smallest difference this sample can
+   * detect", so it has to be a number that actually gets that verdict. The
+   * threshold here is 177.4 rows; rounded it prints 177, and 177 rows comes back
+   * refused. The page said "this evaluation can tell 177 rows apart" over an
+   * instrument that refused 177, which was found by dragging it rather than by
+   * reading it.
+   *
+   * An off by one in the direction of claiming more than the data supports is
+   * the exact failure this project is named after.
+   */
+  const mdeRows = Math.ceil((exactMde / 100) * n)
   const ratio = exactDelta === 0 ? null : Number((exactMde / exactDelta).toFixed(1))
 
   const base = { label, a: aPercent, b: bPercent, n, delta, rows, mde, mdeRows, ratio }

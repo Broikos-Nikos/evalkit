@@ -14,7 +14,9 @@
     "check:input": "node tools/check-input.mjs",
     "check:power": "node tools/check-power.mjs",
     "check:refusal": "node tools/check-refusal.mjs",
-    "build:input": "node tools/build-input.mjs"
+    "build:input": "node tools/build-input.mjs",
+    "check:page": "node tools/check-page.mjs",
+    "verify": "node tools/verify.mjs"
   },
   "devDependencies": {
     "@types/node": "^24.13.6",

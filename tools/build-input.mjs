@@ -26,7 +26,7 @@ import { createHash } from 'node:crypto'
 import { copyFileSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { halfWidth, minimumDetectable, nNeeded, nNeededPaired, mcnemarRange, judge } from './power-lib.mjs'
+import { halfWidth, minimumDetectable, nNeeded, nNeededPaired, mcnemarRange, judge } from '../src/lib/power.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const UPSTREAM = resolve(root, '../watch-it-think/public/model/meta.json')

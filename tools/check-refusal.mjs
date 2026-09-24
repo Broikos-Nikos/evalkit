@@ -22,7 +22,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { judge, minimumDetectable } from './power-lib.mjs'
+import { judge, minimumDetectable } from '../src/lib/power.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const ev = JSON.parse(readFileSync(resolve(root, 'src/generated/evaluation.json'), 'utf8'))
@@ -96,6 +96,38 @@ if (verdicts.size < 3) {
   )
 } else {
   console.log(`  ok      judge() returns all three verdicts across the range, not one`)
+}
+
+/*
+ * The number the page prints as "the smallest difference this sample can detect"
+ * has to be a difference this sample detects.
+ *
+ * It was not. `mdeRows` rounded a threshold of 177.4 rows to 177, and 177 rows
+ * came back refused, so the headline claimed one row more precision than the
+ * data supports. Found by dragging the instrument past its own line, not by
+ * reading the number.
+ *
+ * So both sides of it are asserted: the stated figure is detectable and one row
+ * below it is not. That is the tightest test there is, and it is the one this
+ * project has to pass before it tells anybody else about their sample size.
+ */
+{
+  const rowsToPp = (rows) => (rows / n) * 100
+  const at = judge(base, base + rowsToPp(ev.rows[0].mdeRows), n)
+  const below = judge(base, base + rowsToPp(ev.rows[0].mdeRows - 1), n)
+  if (at.verdict !== 'different') {
+    fail(
+      `the page states ${ev.rows[0].mdeRows} rows as detectable and judge() refuses it`,
+      'A stated threshold that gets refused claims more precision than the sample carries.',
+    )
+  } else if (below.verdict !== 'refused') {
+    fail(
+      `${ev.rows[0].mdeRows - 1} rows is also detectable, so the stated threshold is not the smallest one`,
+      'The figure is meant to be the boundary, not a number somewhere past it.',
+    )
+  } else {
+    console.log(`  ok      ${ev.rows[0].mdeRows} rows is detectable and ${ev.rows[0].mdeRows - 1} is not, so the stated threshold is the boundary`)
+  }
 }
 
 /*
