@@ -9,7 +9,7 @@
     "build": "tsc --noEmit && npm run check && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "check": "npm run check:source && npm run check:input && npm run check:power && npm run check:refusal && npm run check:claims",
+    "check": "npm run check:source && npm run check:licence && npm run check:input && npm run check:power && npm run check:refusal && npm run check:claims",
     "check:source": "node tools/check-source.mjs",
     "check:input": "node tools/check-input.mjs",
     "check:power": "node tools/check-power.mjs",
@@ -19,7 +19,8 @@
     "verify": "node tools/verify.mjs",
     "capture": "node tools/capture.mjs",
     "check:capture": "node tools/check-capture.mjs",
-    "check:claims": "node tools/check-claims.mjs"
+    "check:claims": "node tools/check-claims.mjs",
+    "check:licence": "node tools/check-licence.mjs"
   },
   "devDependencies": {
     "@types/node": "^24.13.6",
