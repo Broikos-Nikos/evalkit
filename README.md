@@ -39,7 +39,7 @@ this right anyway.
 
 Not "no". A refusal that does not say what would have been enough is a shrug:
 
-> intent accuracy is 5.3 rows of 10,578. This sample detects 178 rows and above, so the difference is 33.5 times smaller than the smallest it could see. 11,904,074 rows would be needed to call it either way.
+> intent accuracy is 5.3 rows of 10,578. This sample detects 178 rows and above, so the smallest difference it could see is 33.5 times the one measured. 11,904,074 rows would be needed to call it either way.
 
 ## What this does not claim
 

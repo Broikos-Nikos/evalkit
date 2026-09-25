@@ -76,7 +76,7 @@ cmp('totals.different', ev.totals.different, ev.rows.filter((r) => r.verdict ===
 cmp('totals.indistinguishable', ev.totals.indistinguishable, ev.rows.filter((r) => r.verdict === 'indistinguishable').length)
 cmp('totals.directionsDisagree', ev.totals.directionsDisagree, signs.size > 1)
 cmp('totals.detectableRows', ev.totals.detectableRows, ev.rows[0].mdeRows)
-cmp('totals.timesSmallerThanDetectable', ev.totals.timesSmallerThanDetectable, ev.rows[0].ratio)
+cmp('totals.thresholdOverMeasured', ev.totals.thresholdOverMeasured, ev.rows[0].ratio)
 
 // The minimum detectable effect is the number the refusal turns on, so it is
 // recomputed from first principles rather than read back out of the row it

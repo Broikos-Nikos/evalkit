@@ -1,5 +1,5 @@
 {
-  "built": "2026-09-24",
+  "built": "2026-09-25",
   "source": {
     "what": "watch-it-think's published quantisation comparison, from its own meta.json",
     "upstream": "projects/watch-it-think/public/model/meta.json",
@@ -25,7 +25,7 @@
       "ratio": 33.5,
       "verdict": "refused",
       "why": "5.3 rows, and this sample can only detect 178",
-      "sayable": "intent accuracy is 5.3 rows of 10,578. This sample detects 178 rows and above, so the difference is 33.5 times smaller than the smallest it could see. 11,904,074 rows would be needed to call it either way.",
+      "sayable": "intent accuracy is 5.3 rows of 10,578. This sample detects 178 rows and above, so the smallest difference it could see is 33.5 times the one measured. 11,904,074 rows would be needed to call it either way.",
       "halfWidthPp": 0.83,
       "nNeeded": 11904074,
       "mcnemar": [
@@ -113,7 +113,7 @@
       "ratio": 16.1,
       "verdict": "refused",
       "why": "11.6 rows, and this sample can only detect 187",
-      "sayable": "exact match is 11.6 rows of 10,578. This sample detects 187 rows and above, so the difference is 16.1 times smaller than the smallest it could see. 2,725,961 rows would be needed to call it either way.",
+      "sayable": "exact match is 11.6 rows of 10,578. This sample detects 187 rows and above, so the smallest difference it could see is 16.1 times the one measured. 2,725,961 rows would be needed to call it either way.",
       "halfWidthPp": 0.87,
       "nNeeded": 2725961,
       "mcnemar": [
@@ -183,7 +183,7 @@
       "ratio": 11.5,
       "verdict": "refused",
       "why": "15.9 rows, and this sample can only detect 182",
-      "sayable": "intent accuracy, allowed to decline is 15.9 rows of 10,578. This sample detects 182 rows and above, so the difference is 11.5 times smaller than the smallest it could see. 1,391,624 rows would be needed to call it either way.",
+      "sayable": "intent accuracy, allowed to decline is 15.9 rows of 10,578. This sample detects 182 rows and above, so the smallest difference it could see is 11.5 times the one measured. 1,391,624 rows would be needed to call it either way.",
       "halfWidthPp": 0.85,
       "nNeeded": 1391624,
       "mcnemar": [
@@ -250,6 +250,6 @@
     "directionsDisagree": true,
     "detectableRows": 178,
     "askedAboutRows": 5.3,
-    "timesSmallerThanDetectable": 33.5
+    "thresholdOverMeasured": 33.5
   }
 }

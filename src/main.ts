@@ -130,7 +130,7 @@ function boot(): void {
     `A published comparison of two models on ${n.toLocaleString('en-US')} held out sentences, measured ` +
     `${ev.source.measuredAt}. Its headline metric moved by ${headline.rows} rows, and the smallest ` +
     `difference a sample this size can detect is ${thresholdRows}: ` +
-    `${ev.totals.timesSmallerThanDetectable} times larger than the thing being reported. ` +
+    `${ev.totals.thresholdOverMeasured} times the thing being reported. ` +
     `Drag the difference and watch the verdict turn over.`
 
   el.rows.max = String(MAX_ROWS)

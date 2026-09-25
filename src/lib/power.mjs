@@ -23,8 +23,8 @@
  *   it can detect          177 rows      1.68pp
  *   it is being asked about  5.3 rows     0.05pp
  *
- * Thirty four times smaller than the smallest thing the sample could see. That
- * is not a close call needing a footnote. It is a question the data cannot be
+ * The smallest thing the sample could see is thirty four times the thing it is
+ * being asked about. That is not a close call needing a footnote. It is a question the data cannot be
  * asked, and `judge()` below says so instead of printing a table with a winner
  * in bold.
  *
@@ -207,7 +207,7 @@ export function judge(aPercent, bPercent, n, { label = 'the difference' } = {}) 
     why: `${rows} rows, and this sample can only detect ${mdeRows}`,
     sayable:
       `${label} is ${rows} rows of ${n.toLocaleString('en-US')}. This sample detects ${mdeRows} rows and above, ` +
-      `so the difference is ${ratio} times smaller than the smallest it could see. ` +
+      `so the smallest difference it could see is ${ratio} times the one measured. ` +
       `${nNeeded(aPercent, exactDelta)?.toLocaleString('en-US')} rows would be needed to call it either way.`,
   }
 }

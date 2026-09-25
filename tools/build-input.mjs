@@ -90,7 +90,7 @@ export function compute(metrics, n, meta) {
       detectableRows: rows[0].mdeRows,
       askedAboutRows: rows[0].rows,
       // The one sentence this project exists to make sayable.
-      timesSmallerThanDetectable: rows[0].ratio,
+      thresholdOverMeasured: rows[0].ratio,
     },
   }
 }
@@ -125,4 +125,4 @@ for (const r of out.rows) {
 }
 console.log()
 console.log(`${out.totals.refused} of ${out.totals.metrics} comparisons refused.`)
-console.log(`The headline metric is ${out.totals.timesSmallerThanDetectable}x smaller than the smallest this sample could see.`)
+console.log(`The smallest difference this sample could see is ${out.totals.thresholdOverMeasured}x the headline metric.`)

@@ -49,7 +49,7 @@ const CLAIMS = [
   ['the headline, both halves', `can tell ${h.mdeRows} rows apart. It was asked about ${h.rows}.`],
   ['the sample size', `${num(n)} held out sentences`],
   ['the threshold in the standfirst', `a sample this size can detect is ${h.mdeRows}`],
-  ['the ratio', `${ev.totals.timesSmallerThanDetectable} times larger`],
+  ['the ratio', `${ev.totals.thresholdOverMeasured} times the thing being reported`],
   ['the count of refusals', `${ev.totals.refused} of ${ev.totals.metrics} are refused`],
   ['the threshold in the caption', `it is ${h.mdeRows} rows because n is ${num(n)}`],
 ]
