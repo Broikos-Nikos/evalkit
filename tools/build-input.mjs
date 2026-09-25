@@ -64,6 +64,17 @@ export const METRICS = [
   ['intent accuracy, allowed to decline', q.fp32.withAbstain.intentAccuracy, q.int8.withAbstain.intentAccuracy],
 ]
 
+/**
+ * The row the page leads with, by name.
+ *
+ * It was `rows[0]` here and in `src/main.ts`, which made the headline of this
+ * page a position in the list above. Reorder METRICS, which is the natural way
+ * to change what the table emphasises, and the headline sentence, the threshold
+ * it quotes and the number in the box all follow it with nothing to notice.
+ * tokenlab MA-F8 is the same shape: its bill opened on `pricing.models[1]`.
+ */
+export const HEADLINE_METRIC = 'intent accuracy'
+
 export function compute(metrics, n, meta) {
   const rows = metrics.map(([name, a, b]) => {
     const verdict = judge(a, b, n, { label: name })
@@ -79,18 +90,20 @@ export function compute(metrics, n, meta) {
   })
 
   const signs = new Set(rows.filter((r) => r.delta !== 0).map((r) => Math.sign(r.delta)))
+  const headline = rows.find((r) => r.label === HEADLINE_METRIC) ?? rows[0]
   return {
     rows,
+    headlineMetric: HEADLINE_METRIC,
     totals: {
       metrics: rows.length,
       refused: rows.filter((r) => r.verdict === 'refused').length,
       different: rows.filter((r) => r.verdict === 'different').length,
       indistinguishable: rows.filter((r) => r.verdict === 'indistinguishable').length,
       directionsDisagree: signs.size > 1,
-      detectableRows: rows[0].mdeRows,
-      askedAboutRows: rows[0].rows,
+      detectableRows: headline.mdeRows,
+      askedAboutRows: headline.rows,
       // The one sentence this project exists to make sayable.
-      thresholdOverMeasured: rows[0].ratio,
+      thresholdOverMeasured: headline.ratio,
     },
   }
 }

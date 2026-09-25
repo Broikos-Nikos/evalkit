@@ -35,7 +35,12 @@ const fail = (what, detail) => {
 }
 
 const t = ev.totals
-const h = ev.rows[0]
+/*
+ * The headline row, by the name the evidence file carries. It was `ev.rows[0]`,
+ * so this gate and the page agreed about a position rather than about a metric.
+ */
+const headlineRow = ev.rows.find((r) => r.label === ev.headlineMetric) ?? ev.rows[0]
+const h = headlineRow
 const n = ev.source.heldOutSentences
 const num = (x) => x.toLocaleString('en-US')
 

@@ -35,7 +35,12 @@ const fail = (what, detail) => {
 }
 
 const n = ev.source.heldOutSentences
-const base = ev.rows[0].a
+/*
+ * The headline row, by the name the evidence file carries. It was `ev.rows[0]`,
+ * so this gate and the page agreed about a position rather than about a metric.
+ */
+const headlineRow = ev.rows.find((r) => r.label === ev.headlineMetric) ?? ev.rows[0]
+const base = headlineRow.a
 const mde = minimumDetectable(base, n)
 
 /*
@@ -113,20 +118,20 @@ if (verdicts.size < 3) {
  */
 {
   const rowsToPp = (rows) => (rows / n) * 100
-  const at = judge(base, base + rowsToPp(ev.rows[0].mdeRows), n)
-  const below = judge(base, base + rowsToPp(ev.rows[0].mdeRows - 1), n)
+  const at = judge(base, base + rowsToPp(headlineRow.mdeRows), n)
+  const below = judge(base, base + rowsToPp(headlineRow.mdeRows - 1), n)
   if (at.verdict !== 'different') {
     fail(
-      `the page states ${ev.rows[0].mdeRows} rows as detectable and judge() refuses it`,
+      `the page states ${headlineRow.mdeRows} rows as detectable and judge() refuses it`,
       'A stated threshold that gets refused claims more precision than the sample carries.',
     )
   } else if (below.verdict !== 'refused') {
     fail(
-      `${ev.rows[0].mdeRows - 1} rows is also detectable, so the stated threshold is not the smallest one`,
+      `${headlineRow.mdeRows - 1} rows is also detectable, so the stated threshold is not the smallest one`,
       'The figure is meant to be the boundary, not a number somewhere past it.',
     )
   } else {
-    console.log(`  ok      ${ev.rows[0].mdeRows} rows is detectable and ${ev.rows[0].mdeRows - 1} is not, so the stated threshold is the boundary`)
+    console.log(`  ok      ${headlineRow.mdeRows} rows is detectable and ${headlineRow.mdeRows - 1} is not, so the stated threshold is the boundary`)
   }
 }
 

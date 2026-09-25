@@ -242,6 +242,7 @@
       ]
     }
   ],
+  "headlineMetric": "intent accuracy",
   "totals": {
     "metrics": 4,
     "refused": 3,

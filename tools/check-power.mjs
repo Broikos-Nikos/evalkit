@@ -75,13 +75,33 @@ cmp('totals.refused', ev.totals.refused, ev.rows.filter((r) => r.verdict === 're
 cmp('totals.different', ev.totals.different, ev.rows.filter((r) => r.verdict === 'different').length)
 cmp('totals.indistinguishable', ev.totals.indistinguishable, ev.rows.filter((r) => r.verdict === 'indistinguishable').length)
 cmp('totals.directionsDisagree', ev.totals.directionsDisagree, signs.size > 1)
-cmp('totals.detectableRows', ev.totals.detectableRows, ev.rows[0].mdeRows)
-cmp('totals.thresholdOverMeasured', ev.totals.thresholdOverMeasured, ev.rows[0].ratio)
+/*
+ * The headline row, by name.
+ *
+ * The three totals below are the numbers the page leads with, and they used to
+ * be read off `ev.rows[0]` here and chosen as `rows[0]` where the file is
+ * written, so the gate and the page agreed about a position rather than about a
+ * metric. Reordering the metrics would have moved both together and this would
+ * still have printed ok.
+ */
+const headlineIndex = ev.rows.findIndex((r) => r.label === ev.headlineMetric)
+if (headlineIndex < 0) {
+  fail(
+    `evaluation.json says its headline metric is ${JSON.stringify(ev.headlineMetric)}, and no row carries that label`,
+    `the rows are ${ev.rows.map((r) => JSON.stringify(r.label)).join(', ')}`,
+  )
+}
+const headline = ev.rows[headlineIndex] ?? ev.rows[0]
+
+cmp('totals.detectableRows', ev.totals.detectableRows, headline.mdeRows)
+cmp('totals.thresholdOverMeasured', ev.totals.thresholdOverMeasured, headline.ratio)
 
 // The minimum detectable effect is the number the refusal turns on, so it is
 // recomputed from first principles rather than read back out of the row it
-// already appears in.
-cmp('the minimum detectable effect', ev.rows[0].mde, Number(minimumDetectable(METRICS[0][1], n).toFixed(2)))
+// already appears in. The metric it recomputes is the one named as the
+// headline, located in this file's own independent copy of the inputs.
+const headlineMetric = METRICS.find(([name]) => name === ev.headlineMetric) ?? METRICS[0]
+cmp('the minimum detectable effect', headline.mde, Number(minimumDetectable(headlineMetric[1], n).toFixed(2)))
 
 if (drift.length > 0) {
   fail(

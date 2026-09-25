@@ -41,7 +41,13 @@ const el = {
 
 const ev = evaluation
 const n = ev.source.heldOutSentences
-const headline = ev.rows[0]
+/*
+ * The row this page leads with, found by the name the evidence file carries
+ * rather than by its position in the list. It was `ev.rows[0]`, so reordering
+ * the metrics in `tools/build-input.mjs` would have moved the headline, the
+ * threshold under it and the number in the box, silently.
+ */
+const headline = ev.rows.find((r) => r.label === ev.headlineMetric) ?? ev.rows[0]!
 const base = headline.a
 
 /**
