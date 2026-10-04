@@ -1,13 +1,13 @@
 {
-  "built": "2026-09-25",
+  "built": "2026-10-04",
   "source": {
     "what": "watch-it-think's published quantisation comparison, from its own meta.json",
     "upstream": "projects/watch-it-think/public/model/meta.json",
     "file": "data/meta.json",
     "measuredAt": "2026-09-21",
     "heldOutSentences": 10578,
-    "sha256": "441c90da31b5c248dbf151be9843e8d033a2f3d705b684ecf5f9572b65999370",
-    "bytes": 10253,
+    "sha256": "da2413f4606571216fa51f1620dc242b720725cdd6af9bab83b0d482f4528992",
+    "bytes": 10686,
     "pairedTestRecorded": false,
     "discordantCountsRecorded": false,
     "why": "Frozen and hashed because this project quotes it by number. A quotation of a file that has changed is a claim about a document nobody else has."
