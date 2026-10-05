@@ -103,6 +103,7 @@ function drawTable(): void {
   const rows = ev.rows.map((r) => {
     const row = document.createElement('div')
     row.className = 'row'
+    row.dataset.row = ''
     row.dataset.verdict = r.verdict
 
     const name = document.createElement('span')
