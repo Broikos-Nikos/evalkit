@@ -2,6 +2,9 @@
 
 ### This evaluation can tell 178 rows apart. It was asked about 5.3.
 
+**[The page is live.](https://broikos-nikos.github.io/evalkit/)** Drag the bar
+and the verdict turns over in front of you.
+
 A published comparison of two models on **10,578 held out sentences**. Its
 headline metric moved by 5.3 rows. The smallest difference a sample that size
 can detect is 178.
