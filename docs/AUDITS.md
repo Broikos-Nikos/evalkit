@@ -6,7 +6,7 @@ No audit pass has been run against this project yet. Every finding here was
 raised by a sweep of a class found in another project in the same workspace,
 which is why the identifiers read `ECAP` and `EGRP` rather than a perspective.
 
-**9 findings, 4 closed, 5 open**, across the 0 perspectives that produced them.
+**10 findings, 4 closed, 6 open**, across the 0 perspectives that produced them.
 
 Held to the workspace queue this project is built from by
 `tools/check-audit-status.mjs`, which fails if a row here says anything the
@@ -18,7 +18,7 @@ Not a perspective and not an agent. Findings raised against this project while
 a class found somewhere else in the workspace was being swept across all eight,
 kept here because commit messages cite them like any other.
 
-9 findings, 4 closed.
+10 findings, 4 closed.
 
 | id | severity | status | finding |
 |---|---|---|---|
@@ -31,3 +31,4 @@ kept here because commit messages cite them like any other.
 | `EPRE-F1` | low | fixed, tick 165 | npm run verify started a server and handed the same missing browser to every gate in turn |
 | `ESIZE-F1` | low | open | The README states a file size that nothing measures, correct today at 10 KB |
 | `ETAP-F1` | low | open | Controls shorter than 24 pixels at a phone width |
+| `EFF-F1` | low | open | npm run capture resolves ffmpeg off PATH and asks for it only after the browser has launched |
