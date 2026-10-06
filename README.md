@@ -12,6 +12,8 @@ That is the real page in a real browser, recorded by `npm run capture`. It ends
 where it begins, at the difference that was actually published, because that is
 the one that cannot be called.
 
+`npm run capture`, which makes the recording at the top of this file, needs one program npm does not install: **ffmpeg**. Install it (`winget install Gyan.FFmpeg`, `brew install ffmpeg`, `apt install ffmpeg`). Nothing else here needs it and the page does not.
+
 ---
 
 ## The evaluation, judged
