@@ -119,6 +119,7 @@ try {
   // And the four published comparisons are drawn with the verdicts the library
   // gives them, in the page's own rows.
   const drawn = await page.evaluate(() =>
+
     [...document.querySelectorAll('[data-row]')].map((r) => ({
       verdict: r.dataset.verdict,
       text: r.innerText.replace(/\s+/g, ' '),
