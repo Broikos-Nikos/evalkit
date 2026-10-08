@@ -6,7 +6,7 @@ No audit pass has been run against this project yet. Every finding here was
 raised by a sweep of a class found in another project in the same workspace,
 which is why the identifiers read `ECAP` and `EGRP` rather than a perspective.
 
-**11 findings, 7 closed, 4 open**, across the 0 perspectives that produced them.
+**11 findings, 8 closed, 3 open**, across the 0 perspectives that produced them.
 
 Held to the workspace queue this project is built from by
 `tools/check-audit-status.mjs`, which fails if a row here says anything the
@@ -18,7 +18,7 @@ Not a perspective and not an agent. Findings raised against this project while
 a class found somewhere else in the workspace was being swept across all eight,
 kept here because commit messages cite them like any other.
 
-11 findings, 7 closed.
+11 findings, 8 closed.
 
 | id | severity | status | finding |
 |---|---|---|---|
@@ -29,7 +29,7 @@ kept here because commit messages cite them like any other.
 | `EVLIC-F1` | medium | fixed, tick 118 | The README claims MIT and the repository carries no LICENSE file and no gate holding the claim |
 | `EGIF-F1` | low | open | The loop runs ten seconds, which is the whole of a recruiter’s attention |
 | `EPRE-F1` | low | fixed, tick 165 | npm run verify started a server and handed the same missing browser to every gate in turn |
-| `ESIZE-F1` | low | open | The README states a file size that nothing measures, correct today at 10 KB |
+| `ESIZE-F1` | low | fixed, tick 227 | The README states a file size that nothing measures, correct today at 10 KB |
 | `ETAP-F1` | low | open | Controls shorter than 24 pixels at a phone width |
 | `EFF-F1` | low | fixed, tick 226 | npm run capture resolves ffmpeg off PATH and asks for it only after the browser has launched |
 | `EHEAD-F2` | low | open | The headline in index.html is held against the build and against nothing else |
