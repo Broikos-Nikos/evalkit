@@ -1,0 +1,49 @@
+{
+  "why": "What was on screen when public/card.png was taken, so a caption or an og:description can be held to the picture rather than to a memory of it.",
+  "made": "2026-10-12",
+  "viewport": {
+    "width": 1200,
+    "height": 630
+  },
+  "deviceScaleFactor": 1,
+  "bytes": 47504,
+  "seen": {
+    "title": "evalkit",
+    "background": "#080604",
+    "headline": "This evaluation can tell 178 rows apart. It was asked about 5.3.",
+    "ogTitle": "This evaluation can tell 178 rows apart. It was asked about 5.3.",
+    "ogImage": "https://broikos-nikos.github.io/evalkit/card.png",
+    "firstScreenChars": 397,
+    "numbers": [
+      "0",
+      "04,",
+      "09",
+      "10",
+      "10,578",
+      "11.6",
+      "13,319,954",
+      "15.9",
+      "178",
+      "2026",
+      "21",
+      "2413",
+      "256",
+      "3",
+      "33.5",
+      "35.5",
+      "4",
+      "460657121",
+      "5",
+      "5.3",
+      "69.86",
+      "69.97",
+      "72.48",
+      "72.63",
+      "74.53",
+      "74.58",
+      "80",
+      "95",
+      "97.28"
+    ]
+  }
+}
